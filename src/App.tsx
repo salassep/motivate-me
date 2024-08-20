@@ -1,13 +1,12 @@
 import Footer from './layouts/footer';
 import Header from './layouts/header';
+import Main from './layouts/main';
 
 function App() {
   return (
     <>
       <Header />
-      <div className='grow'>
-
-      </div>
+      <Main />
       <Footer />
     </>
   )
