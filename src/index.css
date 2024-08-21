@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn {
+    @apply hover:bg-primary-dark rounded-lg p-1;
+  }
+}
+
 #root {
   min-height: 100vh;
   display: flex;

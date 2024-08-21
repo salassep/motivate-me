@@ -1,5 +1,6 @@
 import Emotion from "../components/Emotion";
 import Motivation from "../components/Motivation";
+import Action from "../components/Action";
 
 export default function Main() {
   const data: string[] = [
@@ -36,6 +37,7 @@ export default function Main() {
         ))}
       </ul> */}
       <Motivation />
+      <Action />
     </main>
   )
 }
