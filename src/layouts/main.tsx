@@ -39,7 +39,6 @@ export default function Main() {
 
   return (
     <main className="grow flex flex-col justify-center max-w-[1300px] mx-auto">
-
       {
         motivation === null && loading
         ? <>
