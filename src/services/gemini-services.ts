@@ -17,11 +17,11 @@ const generationConfig = {
   responseMimeType: "text/plain" 
 };
 
-export async function getMotivation() {
+export async function getMotivation(emotion: string) {
   const chatSession = model.startChat({
     generationConfig,
   });
 
-  const result = await chatSession.sendMessage("Give me a qoute, I am feeling angry right now. Just give the quote not the explanation.");
+  const result = await chatSession.sendMessage(`Give me a qoute, I am feeling ${emotion} right now. Just give the quote not the explanation.`);
   return result.response.text();
 }
