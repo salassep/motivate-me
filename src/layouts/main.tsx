@@ -1,9 +1,29 @@
 import Emotion from "../components/Emotion";
 import Motivation from "../components/Motivation";
 import Action from "../components/Action";
+import { getMotivation } from "../services/gemini-services";
+import { useEffect, useState } from "react";
 
 export default function Main() {
-  const data: string[] = [
+  const [data, setData] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const fetchMotivation = async (): Promise<string> => {
+    const response = await getMotivation();
+    return response;
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchMotivation();
+      setData(data);
+      setLoading(false);
+    };
+
+    getData();
+  }, []);
+
+  const emotions: string[] = [
     '😊 Happy',
     '😢 Sad',
     '😠 Angry',
@@ -36,7 +56,7 @@ export default function Main() {
           </li>
         ))}
       </ul> */}
-      <Motivation />
+      <Motivation qoute={data!} />
       <Action />
     </main>
   )
