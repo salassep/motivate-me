@@ -2,12 +2,13 @@ import Emotion from "../components/Emotion";
 import Motivation from "../components/Motivation";
 import Action from "../components/Action";
 import { getMotivation, changeMotivation } from "../services/gemini-services";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toPng } from "html-to-image";
 
 export default function Main() {
   const [motivation, setMotivation] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [maxGroupSize, setMaxGroupSize] = useState<number>(6);
   const elementRef = useRef(null);
 
   const handleChangeEmotion = async (emotion: string) => {
@@ -62,11 +63,28 @@ export default function Main() {
     '😭 Touched'
   ];
 
-  const groupedEmotions = [];
-  let groupSize = 7;
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1140){
+        setMaxGroupSize(6);
+      } else if (window.innerWidth > 960 && window.innerWidth <= 1140) {
+        setMaxGroupSize(5);
+      } else if (window.innerWidth > 768 && window.innerWidth <= 960) {
+        setMaxGroupSize(4);
+      } else if (window.innerWidth > 582 && window.innerWidth <= 768) {
+        setMaxGroupSize(3);
+      } else {
+        setMaxGroupSize(2);
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  });
 
-  for (let i = 0; i < emotions.length; i += groupSize) {
-    groupSize = groupedEmotions.length % 2 === 0 ? 5 : 6;
+  const groupedEmotions = [];
+
+  for (let i = 0; i < emotions.length; i += maxGroupSize) {
+    const groupSize:number = groupedEmotions.length % 2 === 0 ? maxGroupSize - 1 : maxGroupSize;
     groupedEmotions.push(emotions.slice(i, i + groupSize));
   }
 
@@ -79,7 +97,7 @@ export default function Main() {
   }
 
   return (
-    <main className="grow flex flex-col justify-center max-w-[1300px] mx-auto">
+    <main className="grow flex flex-col justify-center max-w-[1300px] mx-auto px-4 my-5">
       {
         motivation === null
         ? <>
