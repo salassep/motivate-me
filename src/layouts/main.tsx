@@ -129,6 +129,7 @@ export default function Main() {
               handleChangeClick={() => handleChangeMotivation()}
               handleCopyClick={() => handleCopyMotivation()}
               handleDownloadClick={() => handleDownload()}
+              handleShareClick={() => window.open(`https://twitter.com/intent/tweet?text=${motivation}`, '_blank')}
             />
           </>
       }

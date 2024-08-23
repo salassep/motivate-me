@@ -2,18 +2,20 @@ import back from '../assets/icons/back.svg';
 import change from '../assets/icons/change.svg';
 import download from '../assets/icons/download.svg';
 import copy from '../assets/icons/copy.svg';
-import share from '../assets/icons/share.svg';
+import twitter from '../assets/icons/twitter.svg';
 
 export default function Action({
   handleBackClick,
   handleChangeClick,
   handleCopyClick,
   handleDownloadClick,
+  handleShareClick,
 }: {
   handleBackClick: () => void,
   handleChangeClick: () => void,
   handleCopyClick: () => void,
   handleDownloadClick: () => void,
+  handleShareClick: () => void,
 }) {
   return (
     <div className="flex mt-12 justify-center gap-5">
@@ -29,8 +31,8 @@ export default function Action({
       <button onClick={handleCopyClick} className="btn">
         <img src={copy} alt="Copy" />
       </button>
-      <button className="btn">
-        <img src={share} alt="Share" />
+      <button onClick={handleShareClick} className="btn">
+        <img src={twitter} alt="Tweet qoute" />
       </button>
     </div>
   );
