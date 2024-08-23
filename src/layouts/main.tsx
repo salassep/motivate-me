@@ -6,9 +6,10 @@ import { useState } from "react";
 
 export default function Main() {
   const [motivation, setMotivation] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChangeEmotion = async (emotion: string) => {
+    setLoading(true);
     const motivation = await getMotivation(emotion);
     setMotivation(motivation);
     setLoading(false);
@@ -45,10 +46,18 @@ export default function Main() {
     groupedEmotions.push(emotions.slice(i, i + groupSize));
   }
 
+  if (loading) {
+    return (
+      <main className="grow flex flex-col justify-center max-w-[1300px] mx-auto">
+        <div className="border-gray-300 h-10 w-10 animate-spin rounded-full border-4 border-t-primary" />
+      </main>
+    );
+  }
+
   return (
     <main className="grow flex flex-col justify-center max-w-[1300px] mx-auto">
       {
-        motivation === null && loading
+        motivation === null
         ? <>
             <h2 className="text-3xl">How are you feeling ?</h2>
             <div className="mt-10 space-y-2">
