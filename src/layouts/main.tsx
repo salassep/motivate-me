@@ -80,7 +80,9 @@ export default function Main() {
           </>
         : <>
             <Motivation qoute={motivation!} />
-            <Action />
+            <Action 
+              handleBackClick={() => setMotivation(null)}
+            />
           </>
       }
     </main>

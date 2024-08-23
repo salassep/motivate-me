@@ -4,10 +4,14 @@ import download from '../assets/icons/download.svg';
 import copy from '../assets/icons/copy.svg';
 import share from '../assets/icons/share.svg';
 
-export default function Action() {
+export default function Action({
+  handleBackClick
+}: {
+  handleBackClick: () => void
+}) {
   return (
     <div className="flex mt-12 justify-center gap-5">
-      <button className="btn">
+      <button onClick={handleBackClick} className="btn">
         <img src={back} alt="Back" />
       </button>
       <button className="btn">
