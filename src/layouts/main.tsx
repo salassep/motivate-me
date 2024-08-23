@@ -15,6 +15,10 @@ export default function Main() {
     setLoading(false);
   };
 
+  const handleCopyMotivation = async () => {
+    await navigator.clipboard.writeText(motivation!);
+  };
+
   const emotions: string[] = [
     '😊 Happy',
     '😢 Sad',
@@ -82,6 +86,8 @@ export default function Main() {
             <Motivation qoute={motivation!} />
             <Action 
               handleBackClick={() => setMotivation(null)}
+              handleChangeClick={() => console.log('Change')}
+              handleCopyClick={() => handleCopyMotivation()}
             />
           </>
       }
