@@ -25,3 +25,12 @@ export async function getMotivation(emotion: string) {
   const result = await chatSession.sendMessage(`Give me a qoute, I am feeling ${emotion} right now. Just give the quote not the explanation.`);
   return result.response.text();
 }
+
+export async function changeMotivation(currentMotivation: string) {
+  const chatSession = model.startChat({
+    generationConfig,
+  });
+
+  const result = await chatSession.sendMessage(`${currentMotivation}, but I want something different. Give me a quote with same context. Just give the quote not the explanation.`);
+  return result.response.text();
+}

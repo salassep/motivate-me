@@ -1,7 +1,7 @@
 import Emotion from "../components/Emotion";
 import Motivation from "../components/Motivation";
 import Action from "../components/Action";
-import { getMotivation } from "../services/gemini-services";
+import { getMotivation, changeMotivation } from "../services/gemini-services";
 import { useState } from "react";
 
 export default function Main() {
@@ -14,6 +14,13 @@ export default function Main() {
     setMotivation(motivation);
     setLoading(false);
   };
+
+  const handleChangeMotivation = async () => {
+    setLoading(true);
+    const changedMotivation = await changeMotivation(motivation!);
+    setMotivation(changedMotivation);
+    setLoading(false);
+  }
 
   const handleCopyMotivation = async () => {
     await navigator.clipboard.writeText(motivation!);
@@ -86,7 +93,7 @@ export default function Main() {
             <Motivation qoute={motivation!} />
             <Action 
               handleBackClick={() => setMotivation(null)}
-              handleChangeClick={() => console.log('Change')}
+              handleChangeClick={() => handleChangeMotivation()}
               handleCopyClick={() => handleCopyMotivation()}
             />
           </>
