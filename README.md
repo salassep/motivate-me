@@ -59,5 +59,3 @@ If you would like to contribute to this project, please fork the repository and 
 
 - [React](https://reactjs.org/)
 - [Gemini AI](https://www.gemini.com/ai)
-
-```
