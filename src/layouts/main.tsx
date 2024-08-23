@@ -2,11 +2,13 @@ import Emotion from "../components/Emotion";
 import Motivation from "../components/Motivation";
 import Action from "../components/Action";
 import { getMotivation, changeMotivation } from "../services/gemini-services";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { toPng } from "html-to-image";
 
 export default function Main() {
   const [motivation, setMotivation] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const elementRef = useRef(null);
 
   const handleChangeEmotion = async (emotion: string) => {
     setLoading(true);
@@ -24,6 +26,19 @@ export default function Main() {
 
   const handleCopyMotivation = async () => {
     await navigator.clipboard.writeText(motivation!);
+  };
+
+  const handleDownload = () => {
+    toPng(elementRef.current!, { cacheBust: false, width: 900, height: 900 })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = "my-image-name.png";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const emotions: string[] = [
@@ -88,11 +103,14 @@ export default function Main() {
             </div>
           </>
         : <>
-            <Motivation qoute={motivation!} />
+            <div ref={elementRef} className="bg-white flex flex-col justify-center items-center">
+              <Motivation qoute={motivation!} />
+            </div>
             <Action 
               handleBackClick={() => setMotivation(null)}
               handleChangeClick={() => handleChangeMotivation()}
               handleCopyClick={() => handleCopyMotivation()}
+              handleDownloadClick={() => handleDownload()}
             />
           </>
       }

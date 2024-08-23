@@ -7,11 +7,13 @@ import share from '../assets/icons/share.svg';
 export default function Action({
   handleBackClick,
   handleChangeClick,
-  handleCopyClick
+  handleCopyClick,
+  handleDownloadClick,
 }: {
   handleBackClick: () => void,
   handleChangeClick: () => void,
   handleCopyClick: () => void,
+  handleDownloadClick: () => void,
 }) {
   return (
     <div className="flex mt-12 justify-center gap-5">
@@ -21,7 +23,7 @@ export default function Action({
       <button onClick={handleChangeClick} className="btn">
         <img src={change} alt="Change" />
       </button>
-      <button className="btn">
+      <button onClick={handleDownloadClick} className="btn">
         <img src={download} alt="Download" />
       </button>
       <button onClick={handleCopyClick} className="btn">
