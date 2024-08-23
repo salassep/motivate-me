@@ -34,7 +34,6 @@ export default function Main() {
     '😰 Anxious',
     '😄 Joyful',
     '😒 Annoyed',
-    '😤 Offended',
     '😞 Depressed',
     '😔 Longing',
     '🙏 Grateful',
@@ -45,7 +44,6 @@ export default function Main() {
     '😒 Jealous',
     '😌 Proud',
     '😳 Embarrassed',
-    '😏 Satisfied',
     '😭 Touched'
   ];
 
@@ -53,7 +51,7 @@ export default function Main() {
   let groupSize = 7;
 
   for (let i = 0; i < emotions.length; i += groupSize) {
-    groupSize = groupedEmotions.length % 2 === 0 ? 6 : 7;
+    groupSize = groupedEmotions.length % 2 === 0 ? 5 : 6;
     groupedEmotions.push(emotions.slice(i, i + groupSize));
   }
 
