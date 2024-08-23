@@ -58,4 +58,4 @@ If you would like to contribute to this project, please fork the repository and 
 ## Acknowledgements
 
 - [React](https://reactjs.org/)
-- [Gemini AI](https://www.gemini.com/ai)
+- [Gemini AI](https://ai.google.dev/gemini-api)
