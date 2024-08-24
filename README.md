@@ -14,7 +14,7 @@ Before you begin, ensure you have met the following requirements:
 
 - **Node.js**: Ensure you have Node.js installed on your system.
 - **npm or Yarn**: Ensure you have npm or Yarn installed for package management.
-- **Geimini API Key**: Ensure you have Gemini API Key.
+- **Gemini API Key**: Ensure you have a Gemini API key, or feel free to use mine if you know how to grab it (I’m just using the free version anyway)
 
 ## Getting Started
 
